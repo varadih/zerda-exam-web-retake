@@ -47,14 +47,21 @@ and gets its number in the line.
   - display the number in the following format: "Your number is 123"
   - change the button's text to "get another number" (1p)
 
-### 3. backend: node, express, mysql (6p)
+
+### 3. database: mysql (1p)
+- create the `turnomatic` database and fill it by importing `turno.sql` found in this repository, **or** create a table by hand based on `turno.sql`'s content.
+- attach a screenshot of your database with a few rows of data in it to this repository. (1p)   
+
+*the database has an auto-incrementing `case_number` field, this will be the base for our number distributing machine.*
+
+### 4. backend: node, express (5p)
 - the backend should follow style guide and have descriptive variable names. (1p)
 - the backend should serve the static files for the frontend (1p)
-- create the `turnomatic` database and fill it by importing `turno.sql` found in this repository, **or** create a table by hand based on `turno.sql`'s content. connect to database. (1p)
+
 - the backend should have a `post` endpoint on `/turnomatic`
   - on receiving data in the request, the backend should insert the incoming case in
   the `turnomatic` database, in the `cases` table (1p)
-  - after successfully saving the received data to the database, and adding up the final number - more on that later -, the backend should send a response in the following format (1p):   
+  - after successfully saving the received data to the database, the server should send back the inserted case's `case_number` in the following format (1p):   
   ```json
   {
     "status": "ok",
@@ -69,13 +76,18 @@ and gets its number in the line.
     }
   ```
 
-### 5. backend: unit testing (4p)
-- create a separate file for the number generating module and use it in your server file from there (1p)
-- the number generator should get the case number from the database and the case category name from the request as parameters, and return a generated 3 digit case number as follows (1p):
-  - if the number is smaller than 100, pad the number with 0s from the left to get a 3 digit number: eg. 7 should become 007
+### 5. add functionality: processing unit & unit testing (4p)
+*to make things more interesting, in version 2 of our application, let's fiddle with the number before we send it back.*
+
+#### number processing
+- create a number processing module in a separate file, and use it in your server file from there (1p)
+- the number generator should get the auto-incremented case number from the database and the case category name from the request as parameters, and return a generated 3 digit case number as follows (1p):
+  - if the number is smaller than 100, pad the number with 0s from the left to get a 3 digit number: eg. `7` should become `"007"`
   - if it's a `tech` case, add 500 to the number
   - if it's an `admin` case, add 100
-  - if the resulting number is bigger than 999, crop it - eg. 1024 should be 024
+  - if the resulting number is bigger than 999, crop it - eg. `1024` should be `"024"`
+
+#### unit tests
 - running `npm test` should show green tests (1p)
   - write unit tests for the cases in `test.js` found in this repository
   - write 3 more test cases testing other edge cases (1p)
