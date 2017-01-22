@@ -23,7 +23,7 @@ and gets its number in the line.
 - the test command should be `node test.js`
 - the `node_modules` folder should be gitignored.
 
-### 1. frontend: HTML, DOM & events
+### 1. frontend: HTML, DOM & events (3p)
 - the frontend should follow style guide and have descriptive variable names. (1p)
 - the frontend should have the following components: (1p)
   - a paragraph of text containing this copy: "Thank you for visiting our website! Pick a case group and click the button for your number."
@@ -34,33 +34,34 @@ and gets its number in the line.
   - a button with the text "Go"
 - clicking the button should change the button's text to "loading" (1p)
 
-### 2. frontend: XHR
+### 2. frontend: XHR (2p)
 - clicking the button should send a `post` request to the `/turnomatic` endpoint
+  - the request should contain the value of the case dropdown
   - the request body should follow this format (1p):
   ```json
   {
     "case": "hoodie"
   }
   ```
-- when the response arrives from the server, the frontend should display the
-number in the following format: "Your number is 123"
-- when the response arrives from the server, the frontend should change the button's text to "get another number"
+- when the response arrives from the server, the frontend should
+  - display the number in the following format: "Your number is 123"
+  - change the button's text to "get another number" (1p)
 
-### 3. backend: node, express, mysql
+### 3. backend: node, express, mysql (6p)
 - the backend should follow style guide and have descriptive variable names. (1p)
 - the backend should serve the static files for the frontend (1p)
 - create the `turnomatic` database and fill it by importing `turno.sql` found in this repository, **or** create a table by hand based on `turno.sql`'s content. connect to database. (1p)
 - the backend should have a `post` endpoint on `/turnomatic`
   - on receiving data in the request, the backend should insert the incoming case in
   the `turnomatic` database, in the `cases` table (1p)
-  - after successfully saving the received data to the database, and adding up the final number - more on that later -, the backend should send a response in the following format:   
+  - after successfully saving the received data to the database, and adding up the final number - more on that later -, the backend should send a response in the following format (1p):   
   ```json
   {
     "status": "ok",
     "number": "123"
   }
   ```
-  - if any error (eg. database error) occures, the server should respond with:   
+  - if any error (eg. database error) occures, the server should respond with (1p):   
   ```json
     {
       "status": "error",
@@ -68,7 +69,7 @@ number in the following format: "Your number is 123"
     }
   ```
 
-### 5. backend: unit testing
+### 5. backend: unit testing (4p)
 - create a separate file for the number generating module and use it in your server file from there (1p)
 - the number generator should get the case number from the database and the case category name from the request as parameters, and return a generated 3 digit case number as follows (1p):
   - if the number is smaller than 100, pad the number with 0s from the left to get a 3 digit number: eg. 7 should become 007
