@@ -71,9 +71,9 @@ number in the following format: "Your number is 123"
 ### 5. backend: unit testing
 - create a separate file for the number generating module and use it in your server file from there (1p)
 - the number generator should get the case number from the database and the case category name from the request as parameters, and return a generated 3 digit case number as follows (1p):
-  - if it's a `hoodie` case, pad the number with 0s from the left to get a 3 digit number: eg. 7 should become 007
+  - if the number is smaller than 100, pad the number with 0s from the left to get a 3 digit number: eg. 7 should become 007
   - if it's a `tech` case, add 500 to the number
-  - if it's anything else, add 100
+  - if it's an `admin` case, add 100
   - if the resulting number is bigger than 999, crop it - eg. 1024 should be 024
 - running `npm test` should show green tests (1p)
   - write unit tests for the cases in `test.js` found in this repository
