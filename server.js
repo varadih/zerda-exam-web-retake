@@ -15,10 +15,8 @@ var connection = mysql.createConnection({
   database : 'turnomatic'
 });
 
-//behívja a függvényt, elvégzi a műveletet, kiírja bashben az eredményt
 app.post('/turnomatic', function (req, res) {
   var case_type = req.body.case;
-  // var masik = "kiir valamit";
   var responseFromServer =
       {
         "status": "ok",
@@ -26,16 +24,33 @@ app.post('/turnomatic', function (req, res) {
       }
   console.log(responseFromServer);
 
-
   connection.query('INSERT INTO cases (case_type) VALUES(?)', [case_type],
   function(err) {
     if (err) throw err;
   });
 
-//ha 200as választ kap, akkor elküldi a resultot a clinet oldalnak
   res.status(200).send(JSON.stringify(case_type));
-})
 
+
+  // connection.query('SELECT * FROM case_number', function (err, rows) {
+  // if(!err) {
+  //   var rowsTextOnly = rows.map(function (row) {
+  //     return row.case_number;
+  //   });
+  //   res.send({
+  //     "status": "ok",
+  //     "number": rowsTextOnly
+  //   });
+  // }
+});
+
+  // res.status(418).send(
+  //   {
+  //     "status": "error",
+  //     "message": "server error, please find a member of staff to get your number"
+  //   }
+  // )
+})
 
 connection.connect(function(err){
    if(err){

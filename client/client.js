@@ -15,10 +15,8 @@ button.addEventListener('click', function () {
   };
   console.log(selected);
 
-//elküldi az adatokat a szervernek
   xhr.send(JSON.stringify(selected));
 
-//megjeleníti az elküldött resultot az oldalon, ha a servernek sikerült visszaküldenie az adatot
   xhr.onreadystatechange = function () {
     if(xhr.readyState === XMLHttpRequest.DONE) {
       var yourNumber = document.createElement('li');
