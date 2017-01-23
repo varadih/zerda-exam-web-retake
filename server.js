@@ -17,10 +17,11 @@ var connection = mysql.createConnection({
 
 app.post('/turnomatic', function (req, res) {
   var case_type = req.body.case;
+  var numb = req.body.case_number;
   var responseFromServer =
       {
         "status": "ok",
-        "number": "123"
+        "number": numb
       }
   console.log(responseFromServer);
 
