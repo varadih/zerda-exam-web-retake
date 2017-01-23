@@ -1,7 +1,8 @@
 'use strict';
 
 var button = document.querySelector('button');
-var dropdown = document.querySelector('option');
+var dropdown = document.getElementById('dropdown');
+var placeForText = document.querySelector('#placeForText');
 
 button.addEventListener('click', function () {
   button.innerHTML = "LOADING";
@@ -9,10 +10,10 @@ button.addEventListener('click', function () {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'http://localhost:3000/turnomatic');
   xhr.setRequestHeader('Content-Type', 'application/json');
-  var dropdown = {
-      "case": "hoodie"
+  var selected = {
+      "case": dropdown.options[dropdown.selectedIndex].value
   };
-  console.log(dropdown);
+  console.log(selected);
 
 //elküldi az adatokat a szervernek
   xhr.send(JSON.stringify(dropdown));
@@ -20,8 +21,9 @@ button.addEventListener('click', function () {
 //megjeleníti az elküldött resultot az oldalon, ha a servernek sikerült visszaküldenie az adatot
   xhr.onreadystatechange = function () {
     if(xhr.readyState === XMLHttpRequest.DONE) {
-      var valami = document.createElement('div');
-      valami.innerText = xhr.responseText; //responsetext = az a text amit a szerver visszaküld
+      var yourNumber = document.createElement('li');
+      yourNumber.innerText = "Your number is: " + xhr.responseText;
+      placeForText.appendChild(yourNumber);
     }
   }
 })
