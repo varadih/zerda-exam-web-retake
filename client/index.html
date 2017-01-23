@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Queue Management Application</title>
+</head>
+<style>
+body {
+  background: crimson;
+}
+#container {
+  width: 600px;
+  margin: 150px auto 0;
+  padding: 50px;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 10px 15px -8px #000;
+  border-radius: 5px;
+  text-align: center;
+}
+input, button {
+  margin: 20px;
+}
+
+</style>
+<body>
+  <div id="container">
+    <p>Thank you for visiting our website! <br> Pick a case group and click the button for your number.</p>
+
+    <select id="dropdown">
+        <option disabled selected value="0">-- Please choose! --</option>
+        <option value="admin">Administrative concerns</option>
+        <option value="tech">Technical questions</option>
+        <option value="hoodie">Getting my Green Hoodie</option>
+    </select><br>
+
+    <button>GO!</button>
+
+  </div>
+  <script src="client.js" charset="utf-8"></script>
+
+</body>
+</html>
