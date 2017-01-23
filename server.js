@@ -8,7 +8,6 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static('client'));
 
-//connect to database
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -16,26 +15,28 @@ var connection = mysql.createConnection({
   database : 'turnomatic'
 });
 
-
 //behívja a függvényt, elvégzi a műveletet, kiírja bashben az eredményt
 app.post('/turnomatic', function (req, res) {
-  var ize = req.body.case;
+  var case_type = req.body.case;
   // var masik = "kiir valamit";
-  // console.log(masik);
+  var responseFromServer =
+      {
+        "status": "ok",
+        "number": "123"
+      }
+  console.log(responseFromServer);
 
 
-  connection.query('INSERT INTO cases (case_type) VALUES(?)', [ize],
+  connection.query('INSERT INTO cases (case_type) VALUES(?)', [case_type],
   function(err) {
     if (err) throw err;
   });
 
 //ha 200as választ kap, akkor elküldi a resultot a clinet oldalnak
-  res.status(200).send(JSON.stringify(ize));
+  res.status(200).send(JSON.stringify(case_type));
 })
 
 
-
-//checking if the connection is all right
 connection.connect(function(err){
    if(err){
      console.log("Error connecting to Db");

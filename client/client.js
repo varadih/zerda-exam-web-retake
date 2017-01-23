@@ -16,7 +16,7 @@ button.addEventListener('click', function () {
   console.log(selected);
 
 //elküldi az adatokat a szervernek
-  xhr.send(JSON.stringify(dropdown));
+  xhr.send(JSON.stringify(selected));
 
 //megjeleníti az elküldött resultot az oldalon, ha a servernek sikerült visszaküldenie az adatot
   xhr.onreadystatechange = function () {
@@ -24,6 +24,7 @@ button.addEventListener('click', function () {
       var yourNumber = document.createElement('li');
       yourNumber.innerText = "Your number is: " + xhr.responseText;
       placeForText.appendChild(yourNumber);
+      button.innerHTML = "Get another number";
     }
   }
 })
