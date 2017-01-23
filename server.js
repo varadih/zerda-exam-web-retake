@@ -19,18 +19,18 @@ var connection = mysql.createConnection({
 
 //behívja a függvényt, elvégzi a műveletet, kiírja bashben az eredményt
 app.post('/turnomatic', function (req, res) {
-  // var case = req.body.case;
-  var masik = "kiir valamit";
-  console.log(masik);
+  var ize = req.body.case;
+  // var masik = "kiir valamit";
+  // console.log(masik);
 
 
-  connection.query('INSERT INTO cases (case_type) VALUES(?)', [masik],
+  connection.query('INSERT INTO cases (case_type) VALUES(?)', [ize],
   function(err) {
     if (err) throw err;
   });
 
 //ha 200as választ kap, akkor elküldi a resultot a clinet oldalnak
-  res.status(200).send(JSON.stringify(masik));
+  res.status(200).send(JSON.stringify(ize));
 })
 
 
