@@ -50,7 +50,7 @@ app.post('/turnomatic', function (req, res) {
   //     "message": "server error, please find a member of staff to get your number"
   //   }
   // )
-})
+// })
 
 connection.connect(function(err){
    if(err){

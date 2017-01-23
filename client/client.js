@@ -20,7 +20,8 @@ button.addEventListener('click', function () {
   xhr.onreadystatechange = function () {
     if(xhr.readyState === XMLHttpRequest.DONE) {
       var yourNumber = document.createElement('li');
-      yourNumber.innerText = "Your number is: " + xhr.responseText;
+      var num = JSON.parse(xhr.responseText).case_number;
+      yourNumber.innerText = "Your number is: " + num;
       placeForText.appendChild(yourNumber);
       button.innerHTML = "Get another number";
     }
